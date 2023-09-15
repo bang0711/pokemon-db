@@ -77,7 +77,7 @@ function PetList({ data }: Props) {
                   }.png`)
                 }
               />
-              {result.name}
+              {/* {result.name} */}
             </div>
           ))}
       </div>
