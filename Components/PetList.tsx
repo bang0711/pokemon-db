@@ -35,7 +35,13 @@ function PetList({ data }: Props) {
         onChange={(e) => setName(e.target.value)}
         className="w-[80%] mx-auto p-2 rounded-lg border border-gray-200 outline-none focus-within:shadow-md transition-all duration-200"
       />
-      <div className="pokemon-container">
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(6, minmax(0, 1fr));",
+          gap: "0.5rem",
+        }}
+      >
         {data.results
           .filter((result: any) => result.name.includes(name))
           .map((result: any) => (
