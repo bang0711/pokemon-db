@@ -26,13 +26,12 @@ export async function getPokemonFromWeb() {
 
   const text = await res.text();
   const $ = cheerio.load(text);
-  const pokemonData: { name: string; image: string }[] = [];
+  const pokemonData: { name: string }[] = [];
   $("main > div > div > a").each((index, element) => {
     const name = $(element).find("p").text();
     const image = $(element).find("img").text();
     pokemonData.push({
       name: name,
-      image: image,
     });
   });
   return pokemonData;

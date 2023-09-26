@@ -32,10 +32,7 @@ function PetList({ data }: Props) {
         {data.results
           .filter((result: any) => result.name.includes(name))
           .map((result: any) => (
-            <Link
-              href={`/pokemon/${
-                result.url.split("/")[result.url.split("/").length - 2]
-              }`}
+            <div
               key={result.url.split("/")[result.url.split("/").length - 2]}
               className="p-2 rounded-md shadow-md flex flex-col items-center justify-center capitalize hover:shadow-lg transition-all duration-300"
             >
@@ -74,7 +71,7 @@ function PetList({ data }: Props) {
                 }
               />
               <p> {result.name}</p>
-            </Link>
+            </div>
           ))}
       </div>
     </div>
