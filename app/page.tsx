@@ -6,8 +6,8 @@ type Props = {};
 
 async function HomePage({}: Props) {
   const data = await getAll();
-  // const test = await getPokemonFromWeb();
-  // console.log(test);
+  const test = await getPokemonFromWeb();
+  console.log(test);
   return (
     <main className="bg-white">
       <PetList data={data} />

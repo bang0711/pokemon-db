@@ -22,9 +22,12 @@ export async function getPet(id: number) {
 }
 
 export async function getPokemonFromWeb() {
-  const res = await fetch("https://pokemon-db-git-main-bang0711.vercel.app/");
+  const res = await fetch("https://poke-db.netlify.app/");
 
   const text = await res.text();
   const $ = cheerio.load(text);
+  $("main > div > div > a").each((index, element) => {
+    const name = $(element);
+  });
   return res.text();
 }
