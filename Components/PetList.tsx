@@ -3,23 +3,16 @@ import Loading from "@/app/loading";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 type Props = {
   data: any;
 };
 function PetList({ data }: Props) {
-  const [name, setName] = useState<string>("");
-  function format(index: any) {
-    let id = "";
-    if (index < 10) {
-      id = "00" + index;
-    } else if (index >= 10 && index < 100) {
-      id = "0" + index;
-    } else if (index >= 100) {
-      id = index;
-    }
-    return id;
-  }
+  const params = useSearchParams();
+  const [name, setName] = useState<string>(
+    params.get("name") ? (params.get("name") as string) : ""
+  );
   function convertName(name: string) {
     const newName = name.toLowerCase();
     return newName;
@@ -31,23 +24,20 @@ function PetList({ data }: Props) {
         name=""
         id=""
         value={name}
-        placeholder="Enter name of pokemon"
         onChange={(e) => setName(e.target.value)}
+        placeholder="Enter name of pokemon"
         className="w-[80%] mx-auto p-2 rounded-lg border border-gray-200 outline-none focus-within:shadow-md transition-all duration-200"
       />
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(6, minmax(0, 1fr));",
-          gap: "0.5rem",
-        }}
-      >
+      <div className="pokemon-container">
         {data.results
           .filter((result: any) => result.name.includes(name))
           .map((result: any) => (
-            <div
+            <Link
+              href={`/pokemon/${
+                result.url.split("/")[result.url.split("/").length - 2]
+              }`}
               key={result.url.split("/")[result.url.split("/").length - 2]}
-              className="p-2 rounded-md shadow-md flex flex-col items-center justify-center capitalize"
+              className="p-2 rounded-md shadow-md flex flex-col items-center justify-center capitalize hover:shadow-lg transition-all duration-300"
             >
               <Image
                 alt={result.name}
@@ -84,7 +74,7 @@ function PetList({ data }: Props) {
                 }
               />
               {result.name}
-            </div>
+            </Link>
           ))}
       </div>
     </div>
