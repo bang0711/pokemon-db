@@ -1,15 +1,17 @@
 import PetList from "@/Components/PetList";
-import { getAll } from "@/libs/Functions";
+import { getAll, getPokemonFromWeb } from "@/libs/Functions";
 import React from "react";
 
 type Props = {};
 
 async function HomePage({}: Props) {
   const data = await getAll();
+  // const test = await getPokemonFromWeb();
+  // console.log(test);
   return (
-    <div className="bg-white">
+    <main className="bg-white">
       <PetList data={data} />
-    </div>
+    </main>
   );
 }
 

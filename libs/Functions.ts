@@ -1,3 +1,4 @@
+import * as cheerio from "cheerio";
 export async function getAll() {
   const res = await fetch(
     "https://pokeapi.co/api/v2/pokemon?limit=10000&offset=0"
@@ -18,4 +19,12 @@ export async function getPet(id: number) {
   }
 
   return res.json();
+}
+
+export async function getPokemonFromWeb() {
+  const res = await fetch("https://pokemon-db-git-main-bang0711.vercel.app/");
+
+  const text = await res.text();
+  const $ = cheerio.load(text);
+  return res.text();
 }
