@@ -10,7 +10,8 @@ async function HomePage({}: Props) {
   console.log(test);
   return (
     <main className="bg-white">
-      <PetList data={data} />
+      {/* <PetList data={data} /> */}
+      {JSON.stringify(test)}
     </main>
   );
 }
